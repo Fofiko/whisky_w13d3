@@ -40,6 +40,26 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
     }
 
     //TODO: get all the whisky from a particular region
+//    @Transactional
+//    public List<Whisky> IncorrectgetAllWhiskiesFromRegion(String region){
+//        List<Whisky> results = null;
+//
+//        Session session = entityManager.unwrap(Session.class);
+//
+//        try {
+//            Criteria cr = session.createCriteria(Distillery.class);
+//            cr.createAlias("whiskies", "whisky");
+//            cr.add(Restrictions.eq("region", region));
+//            results = cr.list();
+//        }
+//        catch (HibernateException ex){
+//            ex.printStackTrace();
+//        }
+//        finally {
+//            return results;
+//        }
+//    }
+
     @Transactional
     public List<Whisky> getAllWhiskiesFromRegion(String region){
         List<Whisky> results = null;
@@ -47,9 +67,8 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
         Session session = entityManager.unwrap(Session.class);
 
         try {
-            Criteria cr = session.createCriteria(Distillery.class);
-            cr.createAlias("whiskies", "whisky");
-            cr.add(Restrictions.eq("region", region));
+            Criteria cr = session.createCriteria(Whisky.class);
+            cr.createAlias("distilleries", "distillery");
             results = cr.list();
         }
         catch (HibernateException ex){
@@ -59,6 +78,9 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
             return results;
         }
     }
+
+
+
 
     //TODO: get all the whisky from a particular distillery that's a specific age (if any)
     @Transactional
