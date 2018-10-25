@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -44,5 +45,10 @@ public class WhiskyTrackerApplicationTests {
 	@Test
 	public void canGetAllWhiskiesFromDistilleryOfAge(){
 		List<Whisky> results = whiskyRepository.getAllWhiskiesFromDistilleryOfAge(1L, 12);
+	}
+
+	@Test
+	public void canGetAllDistilleriesWithWhiskiesAgedTwelve(){
+		List<Distillery> results = distilleryRepository.getAllDistilleriesWithWhiskiesAgedTwelve();
 	}
 }
