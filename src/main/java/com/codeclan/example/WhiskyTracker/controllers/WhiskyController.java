@@ -35,5 +35,11 @@ public class WhiskyController {
         return whiskyRepository.getAllWhiskiesFromRegion(region);
     }
 
+    @GetMapping(value = "distillery/{id}/age/{age}")
+    public List<Whisky> getAllWhiskiesFromDistilleryOfAge(@PathVariable Long id, @PathVariable int age) {
+        return whiskyRepository.getAllWhiskiesFromDistilleryOfAge(id, age);
+    }
+
+
 
 }

@@ -46,6 +46,21 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
 
     }
 
+    //TODO: get all the whisky from a particular distillery that's a specific age (if any)
+    @Transactional
+    public List<Whisky> getAllWhiskiesFromDistilleryOfAge(Long distilleryId, int age) {
+
+        List<Whisky> results = null;
+
+        Session session = entityManager.unwrap(Session.class);
+
+        Criteria cr = session.createCriteria(Whisky.class);
+        cr.add(Restrictions.eq("distillery.id", distilleryId));
+        if (age > 0) {cr.add(Restrictions.eq("age", age));}
+        results = cr.list();
+        return results;
+    }
+
 
 
 

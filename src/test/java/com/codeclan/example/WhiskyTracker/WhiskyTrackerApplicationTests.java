@@ -41,4 +41,8 @@ public class WhiskyTrackerApplicationTests {
 		List<Whisky> results = whiskyRepository.getAllWhiskiesFromRegion("Highland");
 	}
 
+	@Test
+	public void canGetAllWhiskiesFromDistilleryOfAge(){
+		List<Whisky> results = whiskyRepository.getAllWhiskiesFromDistilleryOfAge(1L, 12);
+	}
 }
